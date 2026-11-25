@@ -1,0 +1,25 @@
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: false
+- tapOn:
+    id: ${PICK_PHOTO_ID}
+- tapOn:
+    text: ${FIXTURE_SELECTOR}
+- assertVisible:
+    id: ${PREVIEW_ID}
+- tapOn:
+    id: ${GENERATE_ID}
+- extendedWaitUntil:
+    visible:
+      id: ${GENERATED_RESULT_ID}
+    timeout: 60000
+- stopApp
+- launchApp:
+    clearState: false
+- tapOn:
+    id: ${GALLERY_ID}
+- tapOn:
+    id: ${RESULT_ROW_ID}
+- assertVisible:
+    id: ${REOPENED_RESULT_ID}
