@@ -4,8 +4,19 @@ appId: ${APP_ID}
     clearState: false
 - tapOn:
     id: ${PICK_PHOTO_ID}
-- tapOn:
-    text: ${FIXTURE_SELECTOR}
+- runFlow:
+    when:
+      true: ${typeof SAMPLE_PICKER !== "undefined" && SAMPLE_PICKER === "true"}
+    commands:
+      - tapOn:
+          id: PXGGridLayout-Info
+          index: 0
+- runFlow:
+    when:
+      true: ${typeof SAMPLE_PICKER === "undefined" || SAMPLE_PICKER !== "true"}
+    commands:
+      - tapOn:
+          text: ${FIXTURE_SELECTOR}
 - assertVisible:
     id: ${PREVIEW_ID}
 - tapOn:
