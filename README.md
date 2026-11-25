@@ -2,7 +2,19 @@
 
 A reusable Maestro example for checking a photo workflow after an iOS app update. It selects a test image, waits for a result, restarts the app with its data intact, and checks that the same result can be opened from the gallery.
 
-## Setup
+## Try the included sample
+
+Install Xcode with the iOS 27.0 simulator runtime, [Maestro](https://docs.maestro.dev/maestro-cli/how-to-install-maestro-cli), and Java 17 or later. From a local checkout, run:
+
+```sh
+bash run-sample.sh
+```
+
+The script builds the UIKit sample, creates a fresh iPhone 17 simulator, installs the sample, imports the supplied synthetic image, and runs the flow. The sample selects the first photo tile using the iOS 27 picker identifier and checks that the chosen image is 160 × 160, the supplied image's dimensions. It prints the report directory and removes the simulator it created on success. A failed run keeps that simulator and prints its ID for inspection.
+
+Use `MAESTRO_BIN` if Maestro is outside your PATH. The supplied simulator defaults are iPhone 17 and iOS 27.0.
+
+## Setup for your own app
 
 - Use a Mac with Xcode, a booted iOS Simulator, and [Maestro](https://docs.maestro.dev/maestro-cli/how-to-install-maestro-cli).
 - Install your app's simulator build. Use a test account or a stub backend that does not issue real charges.
@@ -36,7 +48,7 @@ If photo selection fails, inspect the picker permissions and accessibility tree 
 
 On 2026-11-25, this flow passed all 11 actions in 19 seconds with Maestro 2.12.1 and Temurin Java 21.0.13.1 on an iPhone 17 simulator running iOS 27.0. The run used a local UIKit sample with a synthetic image and no backend. It selected the image in the system picker, generated and saved a local result, restarted the app, and opened the saved result.
 
-To reproduce this on your app, map the identifiers in the command and inspect the full photo label on your own simulator. Replace the sample label with that exact label, escaping any regex metacharacters. The validation sample app is separate from this repository. The example checks visible app behavior. Pixel quality, backend persistence, and credit balances require separate checks.
+To reproduce this on your app, map the identifiers in the command and inspect the full photo label on your own simulator. Replace the sample label with that exact label, escaping any regex metacharacters. The dated result above refers to the original selector-based run. The packaged runner uses the sample picker branch. The example checks visible app behavior. Pixel quality, backend persistence, and credit balances require separate checks.
 
 ## 한국어 안내
 
